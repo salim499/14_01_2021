@@ -22,14 +22,7 @@
     <script src="http://d3plus.org/js/d3.min.js"></script>
     <script src="https://d3plus.org/js/d3plus-network.v0.6.full.min.js"></script>
     <style>
-
-      body {
-        margin-top: 0%;
-        align-items: center;
-        align-self: center;
-        align-content: center;
-      }
-      h1 {
+      .h1 {
         font-size: 42px;
         text-shadow: -1px -1px rgb(9, 31, 230), 1px 1px rgb(0, 87, 102),
           -3px 0 4px #000;
@@ -47,22 +40,11 @@
         background: black;
         width: 80%;
       }
-      h2 {
-        font-size: 32px;
-        text-shadow: -1px -1px #0c0, 1px 1px #060, -3px 0 4px #000;
-        font-family: Arial, Helvetica, sans-serif;
-        color: #090;
-        padding: 16px;
-        font-weight: lighter;
-        -moz-box-shadow: 2px 2px 6px #888;
-        -webkit-box-shadow: 2px 2px 6px #888;
-        box-shadow: 2px 2px 6px #888;
-        text-align: center;
-        display: block;
-        margin: 16px;
-        background: black;
-        margin-left: 9.4%;
-        width: 80%;
+      body {
+        margin-top: 0%;
+        align-items: center;
+        align-self: center;
+        align-content: center;
       }
       pre {
         font-size: 22px;
@@ -85,30 +67,37 @@
         margin-left: 9.5%;
         background: none;
       }
+      .navh2{
+        background: rgb(214, 224, 224);
+        border-radius: 15%;
+      }
     </style>
   </head>
   <body>
     <nav class="nav">
       <ul>
-<li class="logo">visualisation</li>
-<li class="items"><a href="#">Home</a></li>
-<li class="items"><a href="#">Data visualization</a></li>
-<li class="items"><a href="#">Images visualization</a></li>
-<li class="btn"><a href="#"><i class="fas fa-bars"></i></a></li>
-</ul>
+        <li class="logo">visualisation</li>
+        <li class="items"><a href="./home.html">Acceuil</a></li>
+        <li class="items"><a href="./circle.html">Données visualization</a></li>
+        <li class="items"><a href="./image.html">Images visualization</a></li>
+        <li class="items"><a href="./download.html">Télécharger données</a></li>
+        <li class="btn"><a href="#"><i class="fas fa-bars"></i></a></li>
+        </ul>
 </nav>
 <br/>
 <br/>
 <header>
+  <br/><br/><br/><br/>
   <nav>
     <ul id="nav_bars">
-        <li  class="nav-links" id="gmail"><a class="a" href="#">Chart</a></li>
-        <li  class="nav-links"><a class="a" href="./circle.html">Circle</a ></li>
-        <li  class="nav-links"><a class="a" href="./plot.html">Force directed</a ></li>
-        <li  class="nav-links"><a class="a" href="./network.html">Network</a ></li>
-        
-    </ul>  
-  </nav>  
+      <li  class="nav-links"><a class="a" href="./chart.html"><h2 class="navh2">Graphique</h2></a></li>
+      <li  class="nav-links"><a class="a" href="./circle.html"><h2 class="navh2">Cercle</h2></a ></li>
+      <li  class="nav-links"><a class="a" href="./plot.html"><h2 class="navh2">
+        Force dirigée</h2></a ></li>
+      <li  class="nav-links"><a class="a" href="./network.html"><h2 class="navh2">Réseau</h2></a ></li>
+  </ul>  
+  </nav> 
+  <h1 class="h1">relation clubs <--> nations</h1> 
 </header>  
 <br/><br/>
   </body>

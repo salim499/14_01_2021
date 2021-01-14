@@ -20,16 +20,32 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="http://d3plus.org/js/d3.min.js"></script>
-    <script src="https://d3plus.org/js/d3plus-plot.v0.9.full.min.js"></script>
+    <script src="https://d3plus.org/js/d3plus-hierarchy.v0.9.full.min.js"></script>
     <style>
-
+      .h1 {
+        font-size: 42px;
+        text-shadow: -1px -1px rgb(9, 31, 230), 1px 1px rgb(0, 87, 102),
+          -3px 0 4px #000;
+        font-family: Arial, Helvetica, sans-serif;
+        color: rgb(228, 15, 79);
+        padding: 6px;
+        font-weight: lighter;
+        -moz-box-shadow: 1px px 1px #888;
+        -webkit-box-shadow: 1px 1px 10px #888;
+        box-shadow: 1px 1px 1px #888;
+        text-align: center;
+        display: block;
+        margin: 16px;
+        margin-left: 10%;
+        background: black;
+        width: 80%;
+      }
       body {
         margin-top: 0%;
         align-items: center;
         align-self: center;
         align-content: center;
       }
-     
       pre {
         font-size: 22px;
         font-family: Arial, Helvetica, sans-serif;
@@ -69,7 +85,7 @@
         </ul>
 </nav>
 <br/>
-<br/><br/>
+<br/>
 <header>
   <br/><br/><br/><br/>
   <nav>
@@ -80,67 +96,42 @@
         Force dirigée</h2></a ></li>
       <li  class="nav-links"><a class="a" href="./network.html"><h2 class="navh2">Réseau</h2></a ></li>
   </ul> 
-    <ul id="nav_bars">
-      <li><h2 class="h2">x :</h2></li>
-      <li data-val="height_cm" onclick="Choix2(this)" class="nav-links" id="gmail">|<a style="color: red;" class="a" href="#">taille</a> |</li><br/>
-      <li data-val="weight_kg" onclick="Choix2(this)" class="nav-links">|<a style="color: red;" class="a" href="#">poids</a > |</li>
-      <li data-val="age" onclick="Choix2(this)" class="nav-links">|<a style="color: red;" class="a" href="#">age</a > |</li>
-      <li data-val="international_reputation" onclick="Choix2(this)" class="nav-links">|<a style="color: red;" class="a" href="#">nombre de selections</a > |</li>
-      <li data-val="value_eur" onclick="Choix2(this)" class="nav-links">|<a style="color: red;" class="a" href="#">prix joueur</a > |</li>        
-      </ul>  
-      <ul id="nav_bars">
-        <li><h2 class="h2">y :</h2></li>
-        <li data-val="height_cm" onclick="Choix3(this)" class="nav-links" id="gmail">|<a style="color: red;" class="a" href="#">taille</a> |</li><br/>
-        <li data-val="weight_kg" onclick="Choix3(this)" class="nav-links">|<a style="color: red;" class="a" href="#">poids</a > |</li>
-        <li data-val="age" onclick="Choix3(this)" class="nav-links">|<a style="color: red;" class="a" href="#">age</a > |</li>
-        <li data-val="international_reputation" onclick="Choix3(this)" class="nav-links">|<a style="color: red;" class="a" href="#">nombre de selections</a > |</li>
-        <li data-val="value_eur" onclick="Choix3(this)" class="nav-links">|<a style="color: red;" class="a" href="#">prix joueur</a > |</li>        
-        </ul>  
-    <ul id="nav_bars">
-      <li><h2 class="h2">groupé par :</h2></li>
-      <li data-val="nationality" onclick="Choix(this)"  class="nav-links" id="gmail">|<a style="color: red;" class="a" href="#">nationalité</a> |</li><br/>
-      <li data-val="club" onclick="Choix(this)" class="nav-links">|<a style="color: red;" class="a" href="#">club</a > |</li>
-      <li data-val="age" onclick="Choix(this)" class="nav-links">|<a style="color: red;" class="a" href="#">age</a > |</li>
-      <li data-val="player_positions" onclick="Choix(this)" class="nav-links">|<a style="color: red;" class="a" href="#">positions</a > |</li>
-      <li data-val="preferred_foot" onclick="Choix(this)" class="nav-links">|<a style="color: red;" class="a" href="#">pied fort</a > |</li>        
-      </ul>  
-  </nav>  
-</header>   
-<br/><br/><br/>
+  <ul id="nav_bars">
+    <li><h2 class="h2">propriété choisit :</h2></li>
+    <li data-val="height_cm" onclick="Choix(this)" class="nav-links" id="gmail">|<a style="color: red;" class="a" href="#">taille</a> |</li><br/>
+    <li data-val="weight_kg" onclick="Choix(this)" class="nav-links">|<a style="color: red;" class="a" href="#">poids</a > |</li>
+    <li data-val="age" onclick="Choix(this)" class="nav-links">|<a style="color: red;" class="a" href="#">age</a > |</li>
+    <li data-val="international_reputation" onclick="Choix(this)" class="nav-links">|<a style="color: red;" class="a" href="#">nombre de selections</a > |</li>
+    <li data-val="value_eur" onclick="Choix(this)" class="nav-links">|<a style="color: red;" class="a" href="#">prix du joueur</a > |</li>        
+    </ul>   
+  </nav> 
+</header>  
+<br/><br/>
   </body>
 <script>
-  function randomIntFromInterval(min, max) { // min and max included 
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
   let data=[]
-  let x=""
-  let y=""
   fetch("data3.json")
   .then(response => response.json())
   .then(json =>{
    data=json
-  });
-  function Choix(e){
+})
+function Choix(e){
   let svg=document.getElementsByTagName("svg")
   if(svg[0]){
     svg[0].remove()
   }
-  // Force directed
-  data.forEach(element => {
-    element['y']=element[y]
-    element['x']=element[x]
-  });
-  new d3plus.StackedArea()
-        .data(data)
-        .groupBy(e.dataset.val)
-        .render();
+  // Chart
+  new d3plus.Pie()
+  .config({
+    data: data,
+    groupBy: "short_name",
+    value: function(d) {
+      return d[e.dataset.val];
+    }
+  })
+  .render();
 }
-function Choix2(e){
-  x=e.dataset.val
-}
-function Choix3(e){
-  y=e.dataset.val
-}
+
 </script>
 <script>
   $(document).ready(function(){
